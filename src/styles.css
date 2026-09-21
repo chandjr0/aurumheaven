@@ -1,0 +1,373 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * AURUM HAVEN — design system
+ * Restrained luxury palette: deep black, charcoal, graphite, ivory, sand,
+ * stone, with muted gold used strictly as an accent (~5-10% of the system).
+ */
+
+@theme inline {
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
+
+  --font-display: "Instrument Serif", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand scale */
+  --color-ink: var(--ink);
+  --color-charcoal: var(--charcoal);
+  --color-graphite: var(--graphite);
+  --color-ivory: var(--ivory);
+  --color-warmwhite: var(--warmwhite);
+  --color-sand: var(--sand);
+  --color-stone: var(--stone);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --container-editorial: 96rem;
+}
+
+:root {
+  --radius: 2px;
+
+  --ink: oklch(0.163 0.004 67.8); /* #0A0A09 */
+  --charcoal: oklch(0.219 0.004 67.8); /* #171615 */
+  --graphite: oklch(0.271 0.008 67.8); /* #24211E */
+  --ivory: oklch(0.951 0.021 87.5); /* #F5F1E8 */
+  --warmwhite: oklch(0.973 0.013 87.5); /* #FAF8F3 */
+  --sand: oklch(0.855 0.026 82); /* #D9D0C2 */
+  --stone: oklch(0.673 0.021 80); /* #A69C8F */
+  --gold: oklch(0.673 0.062 84); /* #B89B62 */
+  --gold-light: oklch(0.775 0.062 87); /* #D1B77D */
+
+  --background: var(--warmwhite);
+  --foreground: var(--ink);
+  --card: var(--ivory);
+  --card-foreground: var(--ink);
+  --popover: var(--warmwhite);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--warmwhite);
+  --secondary: var(--ivory);
+  --secondary-foreground: var(--ink);
+  --muted: var(--ivory);
+  --muted-foreground: oklch(0.53 0.014 78);
+  --accent: var(--gold);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.514 0.164 27);
+  --destructive-foreground: var(--warmwhite);
+  --border: oklch(0.885 0.014 84);
+  --input: oklch(0.855 0.018 84);
+  --ring: var(--gold);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    overflow-x: clip;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  #main {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+  }
+
+  /* Keep cover/fill heroes from collapsing under the max-width rule */
+  img.h-full,
+  img.object-cover {
+    max-width: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ---------- Editorial primitives ---------- */
+
+@utility label-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+@utility display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+@utility display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5.5vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.018em;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+@utility display-md {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.6vw, 3.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+}
+
+@utility display-sm {
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 2.2vw, 2rem);
+  line-height: 1.12;
+}
+
+@utility lede {
+  font-size: clamp(1.0625rem, 1.35vw, 1.375rem);
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+}
+
+@utility rule-top {
+  border-top: 1px solid var(--color-border);
+}
+
+/* Scroll reveal — opt-in, disabled under reduced motion */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 1s var(--ease-editorial),
+    transform 1s var(--ease-editorial);
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Link with a quiet underline reveal */
+@utility link-quiet {
+  position: relative;
+  display: inline-block;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease-editorial);
+  }
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleX(1);
+  }
+}
+
+@utility media-zoom {
+  overflow: hidden;
+  & img {
+    transition:
+      transform 1.4s var(--ease-editorial),
+      filter 1.2s var(--ease-editorial);
+    will-change: transform;
+  }
+  &:hover img,
+  &:focus-within img {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes aurum-rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility rise {
+  animation: aurum-rise 1.1s var(--ease-editorial) both;
+}
+
+@keyframes aurum-drift {
+  from {
+    transform: scale(1.04) translateY(0);
+  }
+  to {
+    transform: scale(1.08) translateY(-1%);
+  }
+}
+
+@utility drift {
+  animation: aurum-drift 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Page enter — used by PageTransition */
+.page-enter {
+  transition:
+    opacity 0.45s var(--ease-editorial),
+    transform 0.55s var(--ease-editorial);
+}
+
+.page-enter-pending {
+  opacity: 0.35;
+  transform: translateY(8px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter,
+  .page-enter-pending,
+  .page-enter-active {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Soft card lift for interactive surfaces */
+@utility surface-lift {
+  transition:
+    transform 0.55s var(--ease-editorial),
+    box-shadow 0.55s var(--ease-editorial);
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -28px oklch(0.163 0.004 67.8 / 0.35);
+  }
+}
+
+@keyframes aurum-pulse-line {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scaleY(0.65);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@utility scroll-cue {
+  animation: aurum-pulse-line 2.4s var(--ease-editorial) infinite;
+  transform-origin: top center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+
+/* Touch-friendly minimum targets on coarse pointers */
+@media (pointer: coarse) {
+  .label-eyebrow a,
+  a.label-eyebrow,
+  button.label-eyebrow {
+    min-height: 44px;
+  }
+}

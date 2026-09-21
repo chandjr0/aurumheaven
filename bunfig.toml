@@ -1,0 +1,5 @@
+# Install config — keep supply-chain guard; exclude packages that ship frequently.
+[install]
+saveTextLockfile = true
+minimumReleaseAge = 86400
+minimumReleaseAgeExcludes = ["@lovable.dev/vite-tanstack-config"]

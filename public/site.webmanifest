@@ -1,0 +1,32 @@
+{
+  "name": "Aurum Haven",
+  "short_name": "Aurum Haven",
+  "description": "Dubai real estate advisory — precision in property.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A09",
+  "theme_color": "#0A0A09",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon-mark.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "/favicon-32.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "/logo-aurum-haven.png",
+      "type": "image/png",
+      "sizes": "848x848"
+    }
+  ]
+}
